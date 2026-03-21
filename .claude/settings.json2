@@ -1,0 +1,18 @@
+{
+  "enabledPlugins": {
+    "feature-dev@claude-code-plugins": true
+  },
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-KGaCg4XGVRmNUmQIlrrMbLuOg8OuN1B8eNNFmwx3i2Fs3jn0",
+    "ANTHROPIC_BASE_URL": "http://glm.xiaolaohu.space:3000",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.5-air",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.7",
+    "ANTHROPIC_MODEL": "glm-5",
+    "ANTHROPIC_REASONING_MODEL": "glm-5"
+  },
+  "model": "opus",
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  }
+}
