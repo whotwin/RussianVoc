@@ -10,3 +10,7 @@ wheels/
 .venv
 data/
 *.sql
+.buildozer/
+bin/
+__pycache__/
+*.pyc

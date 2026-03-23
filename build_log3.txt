@@ -1,0 +1,7 @@
+=== Java ===
+openjdk version "17.0.2" 2022-01-18
+=== Accepting SDK licenses ===
+/home/hty/build_apk.sh: line 12: /home/hty/android-sdk/cmdline-tools/latest/bin/sdkmanager: Permission denied
+=== Installing SDK platform-tools + platform-34 + build-tools ===
+/home/hty/build_apk.sh: line 15: /home/hty/android-sdk/cmdline-tools/latest/bin/sdkmanager: Permission denied
+EXIT_CODE:

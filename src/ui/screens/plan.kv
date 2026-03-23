@@ -1,0 +1,36 @@
+<PlanScreen>:
+    name: "plan"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "16dp"
+        spacing: "16dp"
+
+        MDLabel:
+            text: "Learning Plans"
+            font_style: "H5"
+            size_hint_y: None
+            height: "48dp"
+
+        MDScrollView:
+            do_scroll_x: False
+
+            MDList:
+                id: plan_list
+                spacing: "12dp"
+                padding: "8dp"
+
+        # Refresh button
+        MDRaisedButton:
+            text: "Refresh Data"
+            icon: "refresh"
+            on_release: root.refresh_data()
+            size_hint_y: None
+            height: "48dp"
+            pos_hint: {"center_x": 0.5}
+
+        # Loading
+        MDLabel:
+            text: "Loading..." if root.is_loading else ""
+            halign: "center"
+            opacity: 1 if root.is_loading else 0

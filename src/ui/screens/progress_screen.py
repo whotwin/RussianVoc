@@ -1,12 +1,9 @@
 """Progress statistics screen."""
 import asyncio
-from kivy.properties import NumericProperty, ListProperty, BooleanProperty, StringProperty
+from kivy.properties import NumericProperty, ListProperty, BooleanProperty
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.card import MDCard
-from kivymd.uix.label import MDLabel
-from kivymd.uix.boxlayout import MDBoxLayout
+from kivymd.uix.list import MDList, OneLineListItem, TwoLineListItem
 from kivymd.uix.progressbar import MDProgressBar
-from kivymd.uix.chip import MDChip
 
 
 class ProgressScreen(MDScreen):
@@ -22,26 +19,21 @@ class ProgressScreen(MDScreen):
         asyncio.create_task(self.load_stats())
 
     async def load_stats(self):
-        """Load progress statistics."""
         self.is_loading = True
         try:
             from src.data.user_progress import get_streak, get_review_stats
             from src.data.db import get_db
 
-            # Streak
             streak, longest, _ = await get_streak()
             self.current_streak = streak
             self.longest_streak = longest
 
-            # Weekly stats
             weekly = await get_review_stats(7)
             self.weekly_stats = weekly
 
-            # Monthly stats
             monthly = await get_review_stats(30)
             self.monthly_stats = monthly
 
-            # Total and accuracy
             async with get_db() as db:
                 async with db.execute(
                     """SELECT COUNT(*) as total,
@@ -55,7 +47,28 @@ class ProgressScreen(MDScreen):
                         if self.total_reviewed > 0:
                             self.accuracy = int((correct / self.total_reviewed) * 100)
 
+            self._populate_weekly()
         except Exception as e:
             print(f"Stats load error: {e}")
         finally:
             self.is_loading = False
+
+    def _populate_weekly(self):
+        lst = self.ids.get("weekly_list")
+        if not lst:
+            return
+        lst.clear_widgets()
+        if not self.weekly_stats:
+            lst.add_widget(OneLineListItem(text="No reviews this week yet"))
+            return
+        for stat in self.weekly_stats:
+            date_str = stat.get("review_date", "")
+            total = stat.get("total", 0)
+            correct = stat.get("correct", 0)
+            pct = int(correct / total * 100) if total > 0 else 0
+            lst.add_widget(
+                TwoLineListItem(
+                    text=date_str,
+                    secondary_text=f"{total} reviewed — {pct}% correct",
+                )
+            )

@@ -1,14 +1,8 @@
 """Home screen showing today's review and streak."""
 import asyncio
+from datetime import date
 from kivy.properties import StringProperty, NumericProperty, BooleanProperty
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.card import MDCard
-from kivymd.uix.button import MDRaisedButton, MDIconButton
-from kivymd.uix.label import MDLabel
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.progressbar import MDProgressBar
-from kivymd.uix.chip import MDChip
-from kivymd.uix.circularprogressbar import MDCircularProgressBar
 
 
 class HomeScreen(MDScreen):
@@ -21,14 +15,14 @@ class HomeScreen(MDScreen):
     is_loading = BooleanProperty(True)
 
     def on_enter(self):
-        """Load data when screen is entered."""
         asyncio.create_task(self.load_data())
 
     async def load_data(self):
-        """Load home screen data."""
         self.is_loading = True
         try:
             from src.data.user_progress import get_due_cards, get_streak
+            from src.data.db import get_db
+            from src.config import config
 
             due = await get_due_cards(limit=100)
             self.due_count = len(due)
@@ -37,39 +31,39 @@ class HomeScreen(MDScreen):
             self.current_streak = streak
             self.longest_streak = longest
 
-            # Load config
-            from src.config import config
             self.daily_goal = config.daily_goal
 
-            # Calculate today's progress
-            self.today_reviewed = min(self.due_count, self.daily_goal)
-            self.progress_percent = min(100, int((self.today_reviewed / self.daily_goal) * 100))
+            # Actual reviews done today
+            today = date.today().isoformat()
+            async with get_db() as db:
+                async with db.execute(
+                    "SELECT COUNT(*) as cnt FROM review_history WHERE date(reviewed_at) = ?",
+                    (today,),
+                ) as cursor:
+                    row = await cursor.fetchone()
+                    self.today_reviewed = row["cnt"] if row else 0
 
+            self.progress_percent = min(100, int((self.today_reviewed / max(1, self.daily_goal)) * 100))
         except Exception as e:
             print(f"Error loading home data: {e}")
         finally:
             self.is_loading = False
 
     def go_to_study(self):
-        """Navigate to study screen."""
-        self.manager.current = "study"
+        self.app.switch_tab("study")
 
     def go_to_dictionary(self):
-        """Navigate to dictionary screen."""
-        self.manager.current = "dictionary"
+        self.app.switch_tab("dictionary")
 
     def go_to_plan(self):
-        """Navigate to plan screen."""
-        self.manager.current = "plan"
+        self.app.switch_tab("plan")
 
     def go_to_progress(self):
-        """Navigate to progress screen."""
-        self.manager.current = "progress"
+        self.app.switch_tab("progress")
 
     def start_study(self):
-        """Start a study session."""
         if self.due_count > 0:
             self.go_to_study()
         else:
             from kivymd.uix.snackbar import Snackbar
-            Snackbar(text="No cards due today! Great job!").open()
+            Snackbar(text="No cards due! Add words from the dictionary.").open()

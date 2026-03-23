@@ -1,0 +1,111 @@
+<StudyScreen>:
+    name: "study"
+    canvas.before:
+        Color:
+            rgba: app.theme_cls.bg_dark if app.theme_cls.theme_style == "Dark" else app.theme_cls.bg_light
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "16dp"
+        spacing: "16dp"
+
+        # Header
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+            MDLabel:
+                text: "Study"
+                font_style: "H5"
+                halign: "left"
+            MDLabel:
+                id: progress_label
+                text: f"{root.cards_done}/"
+                halign: "right"
+
+        # Flashcard
+        MDCard:
+            id: flashcard_card
+            size_hint: 1, 0.6
+            md_bg_color: app.theme_cls.primary_color
+            radius: "16dp"
+            elevation: 4
+            ripple_behavior: True
+            on_touch_up: root.flip_card() if self.collide_point(*args[1].pos) else None
+
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: "24dp"
+                spacing: "8dp"
+                halign: "center"
+                valign: "middle"
+
+                MDLabel:
+                    id: russian_label
+                    text: root.russian_text
+                    font_style: "H3"
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_y: 1
+
+                MDLabel:
+                    id: translation_label
+                    text: root.translation_text
+                    font_style: "H5"
+                    halign: "center"
+                    opacity: 1 if root.is_flipped else 0
+                    size_hint_y: 1
+
+        # Action buttons
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+            spacing: "8dp"
+
+            MDIconButton:
+                icon: "volume-high"
+                on_release: root.play_audio()
+
+            Widget:
+                size_hint_x: 1
+
+            MDRaisedButton:
+                text: "Again"
+                on_release: root.rate_card(0)
+                md_bg_color: 0.9, 0.3, 0.3, 1
+                disabled: not root.is_flipped
+
+        # Rating buttons (shown when flipped)
+        MDBoxLayout:
+            size_hint_y: None
+            height: "56dp"
+            spacing: "8dp"
+            opacity: 1 if root.is_flipped else 0
+            disabled: not root.is_flipped
+
+            MDRaisedButton:
+                text: "Hard"
+                on_release: root.rate_card(2)
+                md_bg_color: 0.95, 0.6, 0.1, 1
+                disabled: not root.is_flipped
+            MDRaisedButton:
+                text: "Good"
+                on_release: root.rate_card(3)
+                md_bg_color: 0.3, 0.7, 0.3, 1
+                disabled: not root.is_flipped
+            MDRaisedButton:
+                text: "Easy"
+                on_release: root.rate_card(5)
+                md_bg_color: 0.2, 0.5, 0.9, 1
+                disabled: not root.is_flipped
+
+        Widget:
+            size_hint_y: 1
+
+        # Loading/empty state
+        MDLabel:
+            text: "Loading..." if root.is_loading else ""
+            halign: "center"
+            opacity: 1 if root.is_loading else 0

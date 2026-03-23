@@ -1,0 +1,92 @@
+<WordDetailScreen>:
+    name: "word_detail"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "16dp"
+        spacing: "12dp"
+
+        # Header with back button
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+
+            MDIconButton:
+                icon: "arrow-left"
+                on_release: root.go_back()
+
+            MDLabel:
+                text: root.lemma
+                font_style: "H4"
+                halign: "left"
+                valign: "middle"
+
+            MDIconButton:
+                icon: "volume-high"
+                on_release: root.play_audio()
+                pos_hint: {"right": 1}
+
+        # Stressed form
+        MDLabel:
+            text: root.stressed
+            font_style: "H3"
+            halign: "center"
+            color: 0.2, 0.5, 0.9, 1
+            size_hint_y: None
+            height: "48dp"
+
+        # CEFR + POS chips
+        MDBoxLayout:
+            size_hint_y: None
+            height: "32dp"
+            spacing: "8dp"
+            halign: "center"
+
+            MDChip:
+                text: root.cefr
+                selected: True
+            MDChip:
+                text: root.pos
+                selected: True
+
+        # Tabs
+        MDTabs:
+            id: tabs
+
+            # Translations
+            MDTabsBase:
+                title: "Translations"
+                MDScrollView:
+                    MDList:
+                        id: translations_list
+                        padding: "8dp"
+
+            # Forms
+            MDTabsBase:
+                title: "Forms"
+                MDScrollView:
+                    MDList:
+                        id: forms_list
+                        padding: "8dp"
+
+            # Examples
+            MDTabsBase:
+                title: "Examples"
+                MDScrollView:
+                    MDList:
+                        id: examples_list
+                        padding: "8dp"
+
+        # Add to study button
+        MDRaisedButton:
+            text: "Add to Study Plan"
+            icon: "plus"
+            on_release: root.add_to_study()
+            size_hint_y: None
+            height: "48dp"
+            pos_hint: {"center_x": 0.5}
+
+        MDLabel:
+            text: "Loading..." if root.is_loading else ""
+            halign: "center"
+            opacity: 1 if root.is_loading else 0

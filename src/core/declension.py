@@ -22,7 +22,7 @@ _morph = None
 
 
 def _get_morph():
-    """Lazily initialize pymorphy2 MorphAnalyzer."""
+    """Lazily initialize pymorphy3 MorphAnalyzer."""
     global _morph
     if _morph is None:
         import pymorphy3
@@ -31,7 +31,7 @@ def _get_morph():
 
 
 def get_word_analysis(word: str):
-    """Get pymorphy2 analysis for a word."""
+    """Get pymorphy3 analysis for a word."""
     return _get_morph().parse(word)
 
 

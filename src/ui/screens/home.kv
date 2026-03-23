@@ -1,0 +1,136 @@
+<HomeScreen>:
+    name: "home"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "16dp"
+        spacing: "16dp"
+
+        # Title
+        MDLabel:
+            text: "Русские карточки"
+            font_style: "H4"
+            halign: "center"
+            size_hint_y: None
+            height: "48dp"
+
+        # Streak card
+        MDCard:
+            size_hint_y: None
+            height: "80dp"
+            radius: "12dp"
+            padding: "16dp"
+            md_bg_color: 0.25, 0.45, 0.85, 1
+
+            MDBoxLayout:
+                orientation: "horizontal"
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        text: str(root.current_streak)
+                        font_size: "36sp"
+                        bold: True
+                        halign: "center"
+                    Label:
+                        text: "day streak"
+                        font_size: "12sp"
+                        halign: "center"
+                        color: 0.8, 0.8, 0.8, 1
+
+                Widget:
+                    size_hint_x: 0.5
+
+                MDBoxLayout:
+                    orientation: "vertical"
+                    Label:
+                        text: str(root.longest_streak)
+                        font_size: "24sp"
+                        bold: True
+                        halign: "center"
+                    Label:
+                        text: "best streak"
+                        font_size: "12sp"
+                        halign: "center"
+                        color: 0.8, 0.8, 0.8, 1
+
+        # Today's review card
+        MDCard:
+            size_hint_y: None
+            height: "120dp"
+            radius: "12dp"
+            padding: "16dp"
+            ripple_behavior: True
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "8dp"
+
+                MDLabel:
+                    text: "Today's Review"
+                    font_style: "Subtitle1"
+                    size_hint_y: None
+                    height: "24dp"
+
+                MDLabel:
+                    id: due_label
+                    text: f"{root.due_count} cards due"
+                    font_style: "H5"
+                    size_hint_y: None
+                    height: "32dp"
+
+                MDProgressBar:
+                    value: root.progress_percent
+                    size_hint_y: None
+                    height: "8dp"
+                    radius: "4dp"
+
+                MDLabel:
+                    text: f"{root.today_reviewed}/{root.daily_goal} reviewed"
+                    font_size: "12sp"
+                    color: 0.5, 0.5, 0.5, 1
+                    size_hint_y: None
+                    height: "20dp"
+
+        # Navigation buttons
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: "12dp"
+            size_hint_y: 1
+
+            MDRaisedButton:
+                text: "Start Study"
+                icon: "book-open-variant"
+                on_release: root.start_study()
+                size_hint_y: None
+                height: "48dp"
+
+            MDRaisedButton:
+                text: "Dictionary"
+                icon: "book-search"
+                on_release: root.go_to_dictionary()
+                size_hint_y: None
+                height: "48dp"
+                md_bg_color: 0.3, 0.6, 0.3, 1
+
+            MDRaisedButton:
+                text: "Learning Plan"
+                icon: "chart-bar"
+                on_release: root.go_to_plan()
+                size_hint_y: None
+                height: "48dp"
+                md_bg_color: 0.6, 0.3, 0.6, 1
+
+            MDRaisedButton:
+                text: "Progress Stats"
+                icon: "chart-line"
+                on_release: root.go_to_progress()
+                size_hint_y: None
+                height: "48dp"
+                md_bg_color: 0.8, 0.5, 0.1, 1
+
+        # Loading
+        MDLabel:
+            text: "Loading..." if root.is_loading else ""
+            halign: "center"
+            opacity: 1 if root.is_loading else 0

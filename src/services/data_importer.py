@@ -174,6 +174,7 @@ async def seed_sample_data() -> int:
     init_db_sync()
 
     sample_words = [
+        # A1 - Core vocabulary
         {
             "lemma": "дом",
             "stressed": "дом",
@@ -374,6 +375,961 @@ async def seed_sample_data() -> int:
             "translations": ["to go", "to walk"],
             "examples": [
                 ("Мы идём домой.", "We are going home."),
+            ],
+        },
+        # A1 - Additional everyday words
+        {
+            "lemma": "мама",
+            "stressed": "ма\u0301ма",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["mother", "mom"],
+            "examples": [
+                ("Моя мама дома.", "My mom is at home."),
+            ],
+        },
+        {
+            "lemma": "папа",
+            "stressed": "па\u0301па",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["father", "dad"],
+            "examples": [
+                ("Папа на работе.", "Dad is at work."),
+            ],
+        },
+        {
+            "lemma": "друг",
+            "stressed": "друг",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["friend"],
+            "examples": [
+                ("Мой лучший друг.", "My best friend."),
+            ],
+        },
+        {
+            "lemma": "школа",
+            "stressed": "шко\u0301ла",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["school"],
+            "examples": [
+                ("Дети идут в школу.", "Children go to school."),
+            ],
+        },
+        {
+            "lemma": "работа",
+            "stressed": "рабо\u0301та",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["work", "job"],
+            "examples": [
+                ("У меня много работы.", "I have a lot of work."),
+            ],
+        },
+        {
+            "lemma": "день",
+            "stressed": "день",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["day"],
+            "examples": [
+                ("Какой сегодня день?", "What day is today?"),
+                ("Хорошего дня!", "Have a good day!"),
+            ],
+        },
+        {
+            "lemma": "ночь",
+            "stressed": "ночь",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["night"],
+            "examples": [
+                ("Спокойной ночи!", "Good night!"),
+            ],
+        },
+        {
+            "lemma": "время",
+            "stressed": " вре\u0301мя",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["time"],
+            "examples": [
+                ("Сколько времени?", "What time is it?"),
+            ],
+        },
+        {
+            "lemma": "маленький",
+            "stressed": "ма\u0301ленький",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["small", "little"],
+            "examples": [
+                ("Маленький дом.", "A small house."),
+            ],
+        },
+        {
+            "lemma": "новый",
+            "stressed": "но\u0301вый",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["new"],
+            "examples": [
+                ("Новый дом.", "A new house."),
+            ],
+        },
+        {
+            "lemma": "старый",
+            "stressed": "ста\u0301рый",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["old"],
+            "examples": [
+                ("Старый дом.", "An old house."),
+            ],
+        },
+        {
+            "lemma": "белый",
+            "stressed": "бе\u0301лый",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["white"],
+            "examples": [
+                ("Белый снег.", "White snow."),
+            ],
+        },
+        {
+            "lemma": "чёрный",
+            "stressed": "чёрный",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["black"],
+            "examples": [
+                ("Чёрная кошка.", "A black cat."),
+            ],
+        },
+        {
+            "lemma": "красный",
+            "stressed": "кра\u0301сный",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["red"],
+            "examples": [
+                ("Красное яблоко.", "A red apple."),
+            ],
+        },
+        {
+            "lemma": "синий",
+            "stressed": "си\u0301ний",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["blue"],
+            "examples": [
+                ("Синее небо.", "Blue sky."),
+            ],
+        },
+        {
+            "lemma": "писать",
+            "stressed": "писа\u0301ть",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to write"],
+            "examples": [
+                ("Я пишу письмо.", "I am writing a letter."),
+            ],
+        },
+        {
+            "lemma": "говорить",
+            "stressed": "говори\u0301ть",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to speak", "to talk"],
+            "examples": [
+                ("Я говорю по-русски.", "I speak Russian."),
+            ],
+        },
+        {
+            "lemma": "знать",
+            "stressed": "знать",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to know"],
+            "examples": [
+                ("Я знаю это.", "I know this."),
+            ],
+        },
+        {
+            "lemma": "хотеть",
+            "stressed": "хоте\u0301ть",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to want"],
+            "examples": [
+                ("Я хочу чаю.", "I want some tea."),
+            ],
+        },
+        {
+            "lemma": "мочь",
+            "stressed": "мочь",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to be able", "can"],
+            "examples": [
+                ("Я могу это сделать.", "I can do this."),
+            ],
+        },
+        {
+            "lemma": "делать",
+            "stressed": "де\u0301лать",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to do", "to make"],
+            "examples": [
+                ("Что ты делаешь?", "What are you doing?"),
+            ],
+        },
+        {
+            "lemma": "спать",
+            "stressed": "спать",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to sleep"],
+            "examples": [
+                ("Я ложусь спать.", "I go to bed."),
+            ],
+        },
+        {
+            "lemma": "ходить",
+            "stressed": "хо\u0301дить",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to walk", "to go"],
+            "examples": [
+                ("Я хожу в школу.", "I go to school."),
+            ],
+        },
+        {
+            "lemma": "ехать",
+            "stressed": "е\u0301хать",
+            "pos": "verb",
+            "cefr": "A1",
+            "translations": ["to go (by transport)"],
+            "examples": [
+                ("Мы едем в Москву.", "We are going to Moscow."),
+            ],
+        },
+        {
+            "lemma": "хлеб",
+            "stressed": "хлеб",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["bread"],
+            "examples": [
+                ("Свежий хлеб.", "Fresh bread."),
+            ],
+        },
+        {
+            "lemma": "молоко",
+            "stressed": "молоко\u0301",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["milk"],
+            "examples": [
+                ("Молоко свежее.", "The milk is fresh."),
+            ],
+        },
+        {
+            "lemma": "мясо",
+            "stressed": "мя\u0301со",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["meat"],
+            "examples": [
+                ("Мясо вкусное.", "The meat is tasty."),
+            ],
+        },
+        {
+            "lemma": "овощи",
+            "stressed": "ово\u0301щи",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["vegetables"],
+            "examples": [
+                ("Свежие овощи.", "Fresh vegetables."),
+            ],
+        },
+        {
+            "lemma": "фрукты",
+            "stressed": "фру\u0301кты",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["fruits"],
+            "examples": [
+                ("Фрукты полезны.", "Fruits are healthy."),
+            ],
+        },
+        {
+            "lemma": "яблоко",
+            "stressed": "я\u0301блоко",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["apple"],
+            "examples": [
+                ("Яблоко красное.", "The apple is red."),
+            ],
+        },
+        {
+            "lemma": "кошка",
+            "stressed": "ко\u0301шка",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["cat"],
+            "examples": [
+                ("Кошка спит.", "The cat is sleeping."),
+            ],
+        },
+        {
+            "lemma": "собака",
+            "stressed": "соба\u0301ка",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["dog"],
+            "examples": [
+                ("Собака лает.", "The dog is barking."),
+            ],
+        },
+        {
+            "lemma": "окно",
+            "stressed": "окно\u0301",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["window"],
+            "examples": [
+                ("Окно открыто.", "The window is open."),
+            ],
+        },
+        {
+            "lemma": "дверь",
+            "stressed": "дверь",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["door"],
+            "examples": [
+                ("Дверь закрыта.", "The door is closed."),
+            ],
+        },
+        {
+            "lemma": "улица",
+            "stressed": "у\u0301лица",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["street"],
+            "examples": [
+                ("Улица тихая.", "The street is quiet."),
+            ],
+        },
+        {
+            "lemma": "город",
+            "stressed": "го\u0301род",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["city", "town"],
+            "examples": [
+                ("Большой город.", "A big city."),
+            ],
+        },
+        {
+            "lemma": "страна",
+            "stressed": "стра\u0301на",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["country"],
+            "examples": [
+                ("Моя страна — Россия.", "My country is Russia."),
+            ],
+        },
+        {
+            "lemma": "русский",
+            "stressed": "ру\u0301сский",
+            "pos": "adjective",
+            "cefr": "A1",
+            "translations": ["Russian"],
+            "examples": [
+                ("Русский язык.", "Russian language."),
+            ],
+        },
+        {
+            "lemma": "человек",
+            "stressed": "челове\u0301к",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["person", "human"],
+            "examples": [
+                ("Хороший человек.", "A good person."),
+            ],
+        },
+        {
+            "lemma": "женщина",
+            "stressed": "же\u0301нщина",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["woman"],
+            "examples": [
+                ("Эта женщина врач.", "This woman is a doctor."),
+            ],
+        },
+        {
+            "lemma": "мужчина",
+            "stressed": "мужчи\u0301на",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["man"],
+            "examples": [
+                ("Мужчина работает.", "The man is working."),
+            ],
+        },
+        {
+            "lemma": "ребёнок",
+            "stressed": "ребё\u0301нок",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["child"],
+            "examples": [
+                ("Ребёнок спит.", "The child is sleeping."),
+            ],
+        },
+        {
+            "lemma": "врач",
+            "stressed": "врач",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["doctor"],
+            "examples": [
+                ("Врач помогает.", "The doctor helps."),
+            ],
+        },
+        {
+            "lemma": "учитель",
+            "stressed": "учи\u0301тель",
+            "pos": "noun",
+            "cefr": "A1",
+            "translations": ["teacher"],
+            "examples": [
+                ("Учитель объясняет.", "The teacher explains."),
+            ],
+        },
+        # A2 vocabulary
+        {
+            "lemma": "понимать",
+            "stressed": "понима\u0301ть",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to understand"],
+            "examples": [
+                ("Я не понимаю.", "I don't understand."),
+            ],
+        },
+        {
+            "lemma": "думать",
+            "stressed": "ду\u0301мать",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to think"],
+            "examples": [
+                ("Я думаю о вас.", "I am thinking about you."),
+            ],
+        },
+        {
+            "lemma": "ждать",
+            "stressed": "ждать",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to wait"],
+            "examples": [
+                ("Я жду автобус.", "I am waiting for the bus."),
+            ],
+        },
+        {
+            "lemma": "брать",
+            "stressed": "брать",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to take"],
+            "examples": [
+                ("Возьми книгу.", "Take the book."),
+            ],
+        },
+        {
+            "lemma": "давать",
+            "stressed": "дава\u0301ть",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to give"],
+            "examples": [
+                ("Дай мне воды.", "Give me some water."),
+            ],
+        },
+        {
+            "lemma": "помогать",
+            "stressed": "помога\u0301ть",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to help"],
+            "examples": [
+                ("Я помогу тебе.", "I will help you."),
+            ],
+        },
+        {
+            "lemma": "любить",
+            "stressed": "люби\u0301ть",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to love", "to like"],
+            "examples": [
+                ("Я люблю музыку.", "I love music."),
+            ],
+        },
+        {
+            "lemma": "видеть",
+            "stressed": "ви\u0301деть",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to see"],
+            "examples": [
+                ("Я вижу тебя.", "I see you."),
+            ],
+        },
+        {
+            "lemma": "слышать",
+            "stressed": "слы\u0301шать",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to hear"],
+            "examples": [
+                ("Я слышу музыку.", "I hear music."),
+            ],
+        },
+        {
+            "lemma": "учить",
+            "stressed": "у\u0301чить",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to learn", "to teach"],
+            "examples": [
+                ("Я учу русский.", "I am learning Russian."),
+            ],
+        },
+        {
+            "lemma": "путешествовать",
+            "stressed": "путешествовать",
+            "pos": "verb",
+            "cefr": "A2",
+            "translations": ["to travel"],
+            "examples": [
+                ("Я люблю путешествовать.", "I love to travel."),
+            ],
+        },
+        {
+            "lemma": "интересный",
+            "stressed": "интере\u0301сный",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["interesting"],
+            "examples": [
+                ("Интересная книга.", "An interesting book."),
+            ],
+        },
+        {
+            "lemma": "важный",
+            "stressed": "ва\u0301жный",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["important"],
+            "examples": [
+                ("Важный вопрос.", "An important question."),
+            ],
+        },
+        {
+            "lemma": "тёплый",
+            "stressed": "тёплый",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["warm"],
+            "examples": [
+                ("Тёплая погода.", "Warm weather."),
+            ],
+        },
+        {
+            "lemma": "холодный",
+            "stressed": "холо\u0301дный",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["cold"],
+            "examples": [
+                ("Холодная зима.", "Cold winter."),
+            ],
+        },
+        {
+            "lemma": "погода",
+            "stressed": "пого\u0301да",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["weather"],
+            "examples": [
+                ("Какая сегодня погода?", "What is the weather like today?"),
+            ],
+        },
+        {
+            "lemma": "вокзал",
+            "stressed": "вокза\u0301л",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["railway station"],
+            "examples": [
+                ("Встретимся на вокзале.", "Let's meet at the station."),
+            ],
+        },
+        {
+            "lemma": "аэропорт",
+            "stressed": "аэропо\u0301рт",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["airport"],
+            "examples": [
+                ("Самолёт в аэропорту.", "The plane is at the airport."),
+            ],
+        },
+        {
+            "lemma": "билет",
+            "stressed": "биле\u0301т",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["ticket"],
+            "examples": [
+                ("Купить билет.", "To buy a ticket."),
+            ],
+        },
+        {
+            "lemma": "гостиница",
+            "stressed": "гостини\u0301ца",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["hotel"],
+            "examples": [
+                ("Бронировать гостиницу.", "To book a hotel."),
+            ],
+        },
+        {
+            "lemma": "ресторан",
+            "stressed": "рестора\u0301н",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["restaurant"],
+            "examples": [
+                ("Ужин в ресторане.", "Dinner at a restaurant."),
+            ],
+        },
+        {
+            "lemma": "магазин",
+            "stressed": "магази\u0301н",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["shop", "store"],
+            "examples": [
+                ("Идти в магазин.", "To go to the store."),
+            ],
+        },
+        {
+            "lemma": "деньги",
+            "stressed": "де\u0301ньги",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["money"],
+            "examples": [
+                ("Мне нужны деньги.", "I need money."),
+            ],
+        },
+        {
+            "lemma": "цена",
+            "stressed": "цена\u0301",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["price"],
+            "examples": [
+                ("Какая цена?", "What is the price?"),
+            ],
+        },
+        {
+            "lemma": "время",
+            "stressed": "вре\u0301мя",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["time"],
+            "examples": [
+                ("Нет времени.", "There is no time."),
+            ],
+        },
+        {
+            "lemma": "минута",
+            "stressed": "мину\u0301та",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["minute"],
+            "examples": [
+                ("Одна минута.", "One minute."),
+            ],
+        },
+        {
+            "lemma": "час",
+            "stressed": "час",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["hour"],
+            "examples": [
+                ("Один час.", "One hour."),
+            ],
+        },
+        {
+            "lemma": "неделя",
+            "stressed": "неде\u0301ля",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["week"],
+            "examples": [
+                ("На следующей неделе.", "Next week."),
+            ],
+        },
+        {
+            "lemma": "месяц",
+            "stressed": "ме\u0301сяц",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["month"],
+            "examples": [
+                ("Этот месяц.", "This month."),
+            ],
+        },
+        {
+            "lemma": "год",
+            "stressed": "год",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["year"],
+            "examples": [
+                ("С Новым годом!", "Happy New Year!"),
+            ],
+        },
+        {
+            "lemma": "письмо",
+            "stressed": "письмо\u0301",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["letter"],
+            "examples": [
+                ("Написать письмо.", "To write a letter."),
+            ],
+        },
+        {
+            "lemma": "телефон",
+            "stressed": "телефо\u0301н",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["telephone", "phone"],
+            "examples": [
+                ("Звонить по телефону.", "To call by phone."),
+            ],
+        },
+        {
+            "lemma": "компьютер",
+            "stressed": "компью\u0301тер",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["computer"],
+            "examples": [
+                ("Работать на компьютере.", "To work on a computer."),
+            ],
+        },
+        {
+            "lemma": "Интернет",
+            "stressed": "Интерне\u0301т",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["internet"],
+            "examples": [
+                ("Искать в Интернете.", "To search on the internet."),
+            ],
+        },
+        {
+            "lemma": "рабочий",
+            "stressed": "рабо\u0301чий",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["working", "worker"],
+            "examples": [
+                ("Рабочий день.", "Working day."),
+            ],
+        },
+        {
+            "lemma": "праздник",
+            "stressed": "пра\u0301здник",
+            "pos": "noun",
+            "cefr": "A2",
+            "translations": ["holiday", "festival"],
+            "examples": [
+                ("С праздником!", "Happy holiday!"),
+            ],
+        },
+        {
+            "lemma": "красивый",
+            "stressed": "краси\u0301вый",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["beautiful"],
+            "examples": [
+                ("Красивый город.", "A beautiful city."),
+            ],
+        },
+        {
+            "lemma": "разный",
+            "stressed": "ра\u0301зный",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["different", "various"],
+            "examples": [
+                ("Разные люди.", "Different people."),
+            ],
+        },
+        {
+            "lemma": "иностранный",
+            "stressed": "иностра\u0301нный",
+            "pos": "adjective",
+            "cefr": "A2",
+            "translations": ["foreign"],
+            "examples": [
+                ("Иностранный язык.", "Foreign language."),
+            ],
+        },
+        # B1 vocabulary
+        {
+            "lemma": "объяснять",
+            "stressed": "объясня\u0301ть",
+            "pos": "verb",
+            "cefr": "B1",
+            "translations": ["to explain"],
+            "examples": [
+                ("Объясните, пожалуйста.", "Please explain."),
+            ],
+        },
+        {
+            "lemma": "развивать",
+            "stressed": "развива\u0301ть",
+            "pos": "verb",
+            "cefr": "B1",
+            "translations": ["to develop"],
+            "examples": [
+                ("Развивать навыки.", "To develop skills."),
+            ],
+        },
+        {
+            "lemma": "достигать",
+            "stressed": "достига\u0301ть",
+            "pos": "verb",
+            "cefr": "B1",
+            "translations": ["to achieve"],
+            "examples": [
+                ("Достигать цели.", "To achieve a goal."),
+            ],
+        },
+        {
+            "lemma": "возможность",
+            "stressed": "возмо\u0301жность",
+            "pos": "noun",
+            "cefr": "B1",
+            "translations": ["opportunity", "possibility"],
+            "examples": [
+                ("Большая возможность.", "A great opportunity."),
+            ],
+        },
+        {
+            "lemma": "решение",
+            "stressed": "реше\u0301ние",
+            "pos": "noun",
+            "cefr": "B1",
+            "translations": ["decision", "solution"],
+            "examples": [
+                ("Принять решение.", "To make a decision."),
+            ],
+        },
+        {
+            "lemma": "опыт",
+            "stressed": "о\u0301пыт",
+            "pos": "noun",
+            "cefr": "B1",
+            "translations": ["experience"],
+            "examples": [
+                ("Богатый опыт.", "Rich experience."),
+            ],
+        },
+        {
+            "lemma": "значительный",
+            "stressed": "значи\u0301тельный",
+            "pos": "adjective",
+            "cefr": "B1",
+            "translations": ["significant"],
+            "examples": [
+                ("Значительный прогресс.", "Significant progress."),
+            ],
+        },
+        {
+            "lemma": "традиция",
+            "stressed": "тради\u0301ция",
+            "pos": "noun",
+            "cefr": "B1",
+            "translations": ["tradition"],
+            "examples": [
+                ("Русские традиции.", "Russian traditions."),
+            ],
+        },
+        # B2 vocabulary
+        {
+            "lemma": "содействие",
+            "stressed": "соде\u0301йствие",
+            "pos": "noun",
+            "cefr": "B2",
+            "translations": ["assistance", "support"],
+            "examples": [
+                ("Оказывать содействие.", "To provide assistance."),
+            ],
+        },
+        {
+            "lemma": "предусматривать",
+            "stressed": "предусма\u0301тривать",
+            "pos": "verb",
+            "cefr": "B2",
+            "translations": ["to provide for", "to envisage"],
+            "examples": [
+                ("Закон предусматривает.", "The law provides for."),
+            ],
+        },
+        {
+            "lemma": "обстоятельство",
+            "stressed": "обстоя\u0301тельство",
+            "pos": "noun",
+            "cefr": "B2",
+            "translations": ["circumstance"],
+            "examples": [
+                ("В зависимости от обстоятельств.", "Depending on circumstances."),
+            ],
+        },
+        {
+            "lemma": "исключительный",
+            "stressed": "исключи\u0301тельный",
+            "pos": "adjective",
+            "cefr": "B2",
+            "translations": ["exceptional"],
+            "examples": [
+                ("Исключительный случай.", "An exceptional case."),
             ],
         },
     ]

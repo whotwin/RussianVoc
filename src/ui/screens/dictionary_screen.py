@@ -2,15 +2,10 @@
 import asyncio
 from kivy.properties import StringProperty, BooleanProperty, ListProperty
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.searchbar import MDSearchBar
 from kivymd.uix.list import MDList, OneLineListItem
 from kivymd.uix.chip import MDChip
-from kivymd.uix.boxlayout import MDBoxLayout
-from kivymd.uix.scrollview import MDScrollView
-from kivymd.uix.button import MDFlatButton, MDIconButton
-from kivymd.uix.label import MDLabel
-from kivymd.uix.card import MDCard
 from kivymd.uix.snackbar import Snackbar
+from kivy.uix.textinput import TextInput
 
 
 class DictionaryScreen(MDScreen):
@@ -20,21 +15,24 @@ class DictionaryScreen(MDScreen):
     selected_level = StringProperty("")
 
     def on_enter(self):
-        """Load initial dictionary view."""
         asyncio.create_task(self.load_all_words())
 
+    def on_kv_post(self, base_widget):
+        """Called after KV rules are applied."""
+        self.results_list = self.ids.get("results_list")
+        super().on_kv_post(base_widget)
+
     async def load_all_words(self):
-        """Load all words for initial display."""
         self.is_searching = True
         try:
-            from src.data.vocabulary import get_words_by_level, search_words
+            from src.data.schedule import get_words_by_level
 
             if self.selected_level:
                 words = await get_words_by_level(self.selected_level, limit=50)
             else:
-                words = await get_words_by_level("A1", limit=50)
-                words_a2 = await get_words_by_level("A2", limit=30)
-                words.extend(words_a2)
+                words_a1 = await get_words_by_level("A1", limit=30)
+                words_a2 = await get_words_by_level("A2", limit=20)
+                words = words_a1 + words_a2
 
             self.search_results = [
                 {
@@ -46,21 +44,21 @@ class DictionaryScreen(MDScreen):
                 }
                 for w in words
             ]
+            self._update_list()
         except Exception as e:
             print(f"Dictionary load error: {e}")
         finally:
             self.is_searching = False
 
     async def do_search(self, query: str):
-        """Search for words."""
-        if not query or len(query) < 1:
+        if not query or len(query) < 2:
             await self.load_all_words()
             return
 
         self.search_query = query
         self.is_searching = True
         try:
-            from src.data.vocabulary import search_words
+            from src.data.schedule import search_words
 
             words = await search_words(
                 query, limit=30, cefr_level=self.selected_level if self.selected_level else None
@@ -75,17 +73,16 @@ class DictionaryScreen(MDScreen):
                 }
                 for w in words
             ]
+            self._update_list()
         except Exception as e:
             print(f"Search error: {e}")
         finally:
             self.is_searching = False
 
     def on_search(self, query: str):
-        """Handle search input."""
         asyncio.create_task(self.do_search(query))
 
     def select_level(self, level: str):
-        """Filter by CEFR level."""
         if self.selected_level == level:
             self.selected_level = ""
         else:
@@ -93,6 +90,23 @@ class DictionaryScreen(MDScreen):
         asyncio.create_task(self.load_all_words())
 
     def show_word_detail(self, word_id: int):
-        """Show detailed word view."""
-        self.manager.get_screen("word_detail").load_word(word_id)
-        self.manager.current = "word_detail"
+        self.app.switch_tab("word_detail")
+        self.app.bottom_nav.ids.tab_manager.get_screen("word_detail").load_word(word_id)
+
+    def _update_list(self):
+        """Populate the MDList with search results."""
+        lst = self.ids.get("results_list")
+        if not lst:
+            return
+        lst.clear_widgets()
+        for item in self.search_results:
+            btn = OneLineListItem(
+                text=f"{item['stressed']} — {item.get('pos', '')}",
+                secondary_text=f"[{item['cefr']}]",
+                on_release=lambda x, wid=item["id"]: self.show_word_detail(wid),
+            )
+            lst.add_widget(btn)
+        if not self.search_results:
+            lst.add_widget(
+                OneLineListItem(text="No words found. Try a different search.")
+            )

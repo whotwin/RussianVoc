@@ -1,0 +1,62 @@
+<DictionaryScreen>:
+    name: "dictionary"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "8dp"
+        spacing: "8dp"
+
+        # Search bar
+        BoxLayout:
+            size_hint_y: None
+            height: "48dp"
+            padding: "4dp"
+
+            TextInput:
+                id: search_input
+                hint_text: "Search Russian or English..."
+                multiline: False
+                on_text_validate: root.on_search(self.text)
+                size_hint_x: 1
+
+            MDIconButton:
+                icon: "magnify"
+                on_release: root.on_search(search_input.text)
+
+        # CEFR level chips
+        MDBoxLayout:
+            size_hint_y: None
+            height: "40dp"
+            padding: "4dp"
+            spacing: "4dp"
+
+            MDChip:
+                text: "A1"
+                on_active: root.select_level("A1")
+            MDChip:
+                text: "A2"
+                on_active: root.select_level("A2")
+            MDChip:
+                text: "B1"
+                on_active: root.select_level("B1")
+            MDChip:
+                text: "B2"
+                on_active: root.select_level("B2")
+            MDChip:
+                text: "All"
+                on_active: root.select_level("")
+                selected: True
+
+        # Results list
+        MDScrollView:
+            do_scroll_x: False
+
+            MDList:
+                id: results_list
+                padding: "8dp"
+
+        # Loading
+        MDLabel:
+            text: "Searching..." if root.is_searching else ""
+            halign: "center"
+            opacity: 1 if root.is_searching else 0
